@@ -1,0 +1,8 @@
+#name : union ... { ... }
+#key : u
+#binding : "C-u"
+# --
+union ${1:name}
+{
+    $0
+};

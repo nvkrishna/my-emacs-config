@@ -1,0 +1,6 @@
+#name : FILE *fp = fopen(..., ...);
+# --
+FILE *${fp} = fopen(${"file"}, "${r}");
+if( NULL == $(fp)) {
+	printf("$(1)");
+}

@@ -1,0 +1,82 @@
+;; This is global stuff for my emacs configuration
+
+
+;; Enabling package management system for emacs!
+(when
+    (load
+     (expand-file-name "~/.emacs.d/marmalade/package.el"))
+  (package-initialize))
+
+;enable the marmalade lisp repo
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;enable marvell confluence and stuff necessary for it
+(require 'confluence-autoloads)
+(require 'xml-rpc-autoloads)
+(setq confluence-url "https://ewiki.marvell.com")
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;; Version Control
+
+;enable perforce
+(add-to-list 'load-path "~/.emacs.d/elpa/p4-11.0/")
+(require 'p4)
+(setq p4-executable "/opt/p4v/bin/p4")
+
+;; Git interaction
+(provide 'magit-autoloads)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Aesthetic stuff
+
+;strip off unnecessary 
+(toggle-tool-bar-mode-from-frame)
+(toggle-menu-bar-mode-from-frame)
+(setq inhibit-splash-screen t)
+
+;;enable Org mode
+(require 'org-install)
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;extended keymap 
+
+;;loading file that contains some of below functions
+(load-file "~/.emacs.d/custom/basic-irritants.el")
+
+(global-set-key (kbd "C-x C-g") 'rgrep)
+(global-set-key (kbd "C-c w") 'select-current-word)
+(global-set-key (kbd "C-c l") 'select-current-line)
+(global-set-key (kbd "C-c n") 'next-user-buffer)
+(global-set-key (kbd "C-c p") 'previous-user-buffer)
+(global-set-key (kbd "C-c f") 'semantic-symref)
+(global-set-key (kbd "C-c C-f") 'semantic-symref-symbol)
+(global-set-key (kbd "C-c i t") 'mo-toggle-identifier-naming-style)
+(global-set-key (kbd "C-x w d") 'ecb-goto-window-directories)
+(global-set-key (kbd "C-x w e") 'ecb-goto-window-edit1)
+(global-set-key (kbd "C-x w s") 'ecb-goto-window-sources)
+(global-set-key (kbd "C-x w m") 'ecb-goto-window-methods)
+(global-set-key (kbd "C-x w h") 'ecb-goto-window-history)
+(global-set-key (kbd "C-x w a") 'ecb-hide-ecb-windows)
+(global-set-key (kbd "C-x w r") 'ecb-show-ecb-windows)
+(global-set-key (kbd "C-c m s") 'magit-status)
+(global-set-key (kbd "C-c m l") 'magit-log)
+(global-set-key (kbd "C-w") 'clipboard-kill-region)
+(global-set-key (kbd "M-w") 'clipboard-kill-ring-save)
+(global-set-key (kbd "C-y") 'clipboard-yank)
+
+;alias
+(defalias 'gl 'goto-line)
+(defalias 'cr 'comment-region)
+(defalias 'ucr 'uncomment-region)
+(defalias 'gf 'grep-find)
+(defalias 'rs 'replace-string)
+
+;; Themefying Emacs 
+(require 'color-theme)
+(defalias 'ctsh 'color-theme-subtle-hacker)
+(defalias 'ctcf 'color-theme-calm-forest)
+

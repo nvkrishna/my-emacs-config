@@ -1,0 +1,4 @@
+(define-package "confluence-mode" "3.0.20"
+                "Confluence major mode"
+                '((xml-rpc "1.6.7")
+		  (confluence-edit "1.6-beta"))

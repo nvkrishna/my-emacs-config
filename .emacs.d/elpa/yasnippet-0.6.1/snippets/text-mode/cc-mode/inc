@@ -1,0 +1,5 @@
+#name : #include "..."
+#key : i
+#binding : "keybinding"
+# --
+#include "$1"
